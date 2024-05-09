@@ -46,7 +46,7 @@
 .login-text input {
     width: 70%;
     height: 3rem;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     padding-inline: 10px;
     border-radius: 5px;
     border: none;
@@ -62,11 +62,24 @@
     color: white;
     border: none;
     min-width: 20rem;
+    background: black;
+    transition: all linear .2s;
+    cursor: pointer;
+}
+.login-text button:hover{
+    background: rgba(0, 0, 0, 0.78);
+}
+.red-outline input {
+    outline: red 2px solid;
 }
 
 .login-img {
     position: relative;
     width: 60%;
+}
+
+.login-img img {
+    margin-left: auto;
 }
 
 .login-img::before {
@@ -83,12 +96,15 @@
     font-size: 2.5rem;
 }
 
-.active-btn {
-    background: #b3b3b3;
+.form-field {
+    position: relative;
 }
 
-.inactive-btn {
-    background: #4fb4fd;
+.error-massage {
+    position: absolute;
+    width: 100%;
+    font-size: 14px;
+    color: red;
 }
 
 @media (max-width: 66rem) and (min-width: 57rem) {
@@ -120,19 +136,22 @@
         margin-inline: auto
     }
 }
+
 @media (max-width: 36rem) {
-    .l-s{
+    .l-s {
         display: none;
     }
+
     .login {
         gap: 2rem;
     }
+
     .login-text {
         width: 100%;
         text-align: center;
     }
 
-    .login-text input,.login-text button {
+    .login-text input, .login-text button {
         width: 100%;
         min-width: auto;
     }

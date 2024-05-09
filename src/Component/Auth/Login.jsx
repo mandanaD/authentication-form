@@ -1,23 +1,52 @@
 import auth from "../../assets/Group 18.png"
 import "./Login.css"
+import {LoginSchema} from "../../Validation/Login.js";
+import {Formik, Field, Form} from "formik";
 
 const Login = () => {
+    const sendLoginValue = (value) => {
+        console.log(value)
+    }
+
     return (
         <div className="login-container">
             <div className="login">
-                <form className={"login-text"}>
-                    <h1 className={"l-s"}>welcome back</h1>
-                    <p className={"text-container-p text-gray"}>welcome back please enter your details.</p>
-                    <div>
-                        <input type="email" placeholder={"Email"}/>
-                    </div>
-                    <div>
-                        <input type="password" placeholder={"Password"}/>
-                    </div>
-                    <button className={"active-btn"}>
-                        Login
-                    </button>
-                </form>
+                <Formik
+                    initialValues={{
+                        email: "",
+                        password: ""
+                    }}
+
+                    validationSchema={LoginSchema}
+                    onSubmit={(value) => {
+                        sendLoginValue(value)
+                    }}>
+                    {({errors, touched}) => (
+                        <Form className={"login-text"}>
+                            <h1 className={"l-s"}>welcome back</h1>
+                            <p className={"text-container-p text-gray"}>welcome back please enter your details.</p>
+                            <div className={`form-field ${(touched.email && errors.email) && "red-outline"}`}>
+                                <Field type="email" name={"email"} placeholder={"Email"}/>
+                                {
+                                    (touched.email && errors.email) && (
+                                        <div className={"error-massage"}>{errors.email}</div>
+                                    )
+                                }
+                            </div>
+                            <div className={`form-field ${(touched.password && errors.password) && "red-outline"}`}>
+                                <Field type="password" name={"password"} placeholder={"Password"}/>
+                                {
+                                    (touched.password && errors.password) && (
+                                        <div className={"error-massage"}>{errors.password}</div>
+                                    )
+                                }
+                            </div>
+                            <button type={"submit"}>
+                                Login
+                            </button>
+                        </Form>
+                    )}
+                </Formik>
                 <div className={"login-img"}>
                     <img src={auth} alt=""/>
                 </div>
