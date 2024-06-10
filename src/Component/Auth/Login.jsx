@@ -1,11 +1,14 @@
-import auth from "../../assets/Group 18.png"
+import auth from "../../assets/login.png"
 import "./Login.css"
 import {LoginSchema} from "../../Validation/Login.js";
 import {Formik, Field, Form} from "formik";
+import { toast } from "react-toastify";
 
 const Login = () => {
     const sendLoginValue = (value) => {
         console.log(value)
+        toast.success("Logged In Successfully!");
+
     }
 
     return (
